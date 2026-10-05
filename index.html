@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>समाज कल्याण विभाग कर्मचारी नोंदवही</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f4;
+      --surface: #ffffff;
+      --surface-2: #eef3f0;
+      --ink: #1d2a25;
+      --muted: #5b6863;
+      --line: #cfd8d2;
+      --primary: #0f5b50;
+      --primary-2: #0b453d;
+      --accent: #a54f18;
+      --danger: #9b1c1c;
+      --focus: #d68b2a;
+      --shadow: 0 10px 24px rgba(27, 43, 37, .09);
+      font-family: "Noto Sans Devanagari", "Mangal", "Nirmala UI", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    a, button, input, select, textarea {
+      font: inherit;
+    }
+
+    button, input, select, textarea {
+      border-radius: 6px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      min-height: 42px;
+      padding: 10px 14px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    button:hover {
+      background: var(--primary-2);
+    }
+
+    button.secondary {
+      background: #e5ece8;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    button.secondary:hover {
+      background: #dbe5df;
+    }
+
+    button.warning {
+      background: var(--accent);
+    }
+
+    button.danger {
+      background: var(--danger);
+    }
+
+    button.icon {
+      min-width: 42px;
+      padding: 9px 11px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 9px 11px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus, button:focus-visible {
+      outline: 3px solid rgba(214, 139, 42, .45);
+      outline-offset: 2px;
+    }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+    }
+
+    .sidebar {
+      background: #17352f;
+      color: #fff;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .brand {
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      padding-bottom: 18px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 1.18rem;
+      line-height: 1.35;
+    }
+
+    .brand span {
+      color: rgba(255,255,255,.78);
+      display: block;
+      margin-top: 5px;
+      font-size: .95rem;
+    }
+
+    .nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav button {
+      background: transparent;
+      color: #fff;
+      text-align: left;
+      border: 1px solid transparent;
+      font-weight: 700;
+    }
+
+    .nav button[aria-current="page"], .nav button:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.2);
+    }
+
+    .user-strip {
+      margin-top: auto;
+      color: rgba(255,255,255,.82);
+      font-size: .92rem;
+      display: grid;
+      gap: 10px;
+    }
+
+    .content {
+      min-width: 0;
+      padding: 26px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .topbar p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .login-view {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .login-panel {
+      width: min(960px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .login-copy {
+      background: #17352f;
+      color: #fff;
+      padding: 36px;
+      display: grid;
+      align-content: center;
+      gap: 16px;
+    }
+
+    .login-copy h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .login-copy p {
+      margin: 0;
+      color: rgba(255,255,255,.84);
+    }
+
+    .login-form {
+      padding: 30px;
+      display: grid;
+      gap: 14px;
+      align-content: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .panel-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      font-size: 1.13rem;
+      letter-spacing: 0;
+    }
+
+    .panel-body {
+      padding: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px;
+      min-height: 98px;
+      display: grid;
+      align-content: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      max-height: 68vh;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      min-width: 980px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #e9f0ed;
+      z-index: 1;
+      color: #263833;
+    }
+
+    td.wrap {
+      white-space: normal;
+      min-width: 220px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: .86rem;
+    }
+
+    .notice {
+      border-left: 4px solid var(--focus);
+      background: #fff8ec;
+      padding: 12px 14px;
+      color: #493521;
+      margin-bottom: 16px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 31, 27, .52);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      z-index: 30;
+    }
+
+    .modal {
+      width: min(1120px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: var(--surface);
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.28);
+      border: 1px solid var(--line);
+    }
+
+    .profile-print {
+      display: grid;
+      gap: 14px;
+    }
+
+    .profile-section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .profile-section h3 {
+      margin: 0;
+      background: #e9f0ed;
+      padding: 11px 13px;
+      font-size: 1rem;
+    }
+
+    .profile-section dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .profile-section div {
+      padding: 10px 13px;
+      border-top: 1px solid var(--line);
+      min-width: 0;
+    }
+
+    .profile-section dt {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .profile-section dd {
+      margin: 4px 0 0;
+      overflow-wrap: anywhere;
+    }
+
+    .file-list {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    @media (max-width: 920px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .login-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .span-8, .span-6, .span-4, .span-3 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .content {
+        padding: 16px;
+      }
+
+      .topbar {
+        display: grid;
+      }
+
+      .nav, .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-section dl {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .sidebar, .topbar, .no-print, .panel:not(.print-target) {
+        display: none !important;
+      }
+
+      .app-shell {
+        display: block;
+      }
+
+      .content {
+        padding: 0;
+      }
+
+      .panel, .profile-section {
+        box-shadow: none;
+        border-color: #777;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="loginView" class="login-view">
+    <section class="login-panel" aria-labelledby="loginTitle">
+      <div class="login-copy">
+        <h1 id="loginTitle">समाज कल्याण विभाग कर्मचारी नोंदवही</h1>
+        <p>जिल्हा परिषद पुणे यांच्यासाठी अंतर्गत कर्मचारी माहिती, सेवाविषयक नोंदी, कागदपत्रे, पडताळणी आणि विभागनिहाय अहवाल व्यवस्थापन.</p>
+      </div>
+      <form id="loginForm" class="login-form">
+        <div class="notice">
+          नमुना प्रवेश: HOD साठी <strong>hod / hod123</strong>, डेटा एंट्रीसाठी <strong>employee / emp123</strong>
+        </div>
+        <div>
+          <label for="loginRole">प्रवेश प्रकार</label>
+          <select id="loginRole" required>
+            <option value="master">प्रमुख / उच्च अधिकारी प्रवेश</option>
+            <option value="entry">कर्मचारी डेटा एंट्री प्रवेश</option>
+          </select>
+        </div>
+        <div>
+          <label for="loginUser">वापरकर्ता नाव</label>
+          <input id="loginUser" autocomplete="username" required>
+        </div>
+        <div>
+          <label for="loginPass">संकेतशब्द</label>
+          <input id="loginPass" type="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit">प्रवेश करा</button>
+        <p id="loginError" class="hidden" role="alert" style="color: var(--danger); margin: 0; font-weight: 700;"></p>
+      </form>
+    </section>
+  </main>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>समाज कल्याण विभाग</strong>
+        <span>कर्मचारी नोंदवही प्रणाली</span>
+      </div>
+      <nav class="nav" aria-label="मुख्य नेव्हिगेशन">
+        <button data-view="dashboard" type="button">डॅशबोर्ड</button>
+        <button data-view="entry" type="button">नोंदणी / दुरुस्ती</button>
+        <button data-view="master" type="button">मास्टर डेटाबेस</button>
+        <button data-view="profile" type="button">कर्मचारी प्रोफाइल</button>
+        <button data-view="export" type="button">पूर्वावलोकन व Excel</button>
+      </nav>
+      <div class="user-strip">
+        <span id="sessionLabel"></span>
+        <button id="logoutBtn" class="secondary" type="button">बाहेर पडा</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="topbar">
+        <div>
+          <h1 id="viewTitle">डॅशबोर्ड</h1>
+          <p id="viewSubtitle">अधिकृत कार्यालयीन वापरासाठी कर्मचारी माहितीची डिजिटल नोंद.</p>
+        </div>
+        <div class="actions no-print">
+          <button id="newRecordBtn" class="secondary" type="button">नवीन नोंद</button>
+          <button id="previewBtn" type="button">डाउनलोडपूर्व पूर्वावलोकन</button>
+        </div>
+      </div>
+
+      <section id="dashboardView" class="view-section">
+        <div class="stats" aria-label="आढावा">
+          <div class="stat"><strong id="totalCount">0</strong><span>एकूण कर्मचारी नोंदी</span></div>
+          <div class="stat"><strong id="deptCount">0</strong><span>नोंदविलेले विभाग</span></div>
+          <div class="stat"><strong id="docCount">0</strong><span>जोडलेली कागदपत्रे</span></div>
+          <div class="stat"><strong id="retireCount">0</strong><span>सेवानिवृत्ती दिनांक नमूद</span></div>
+        </div>
+        <section class="panel">
+          <div class="panel-header">
+            <h2>विभागनिहाय कर्मचारी संख्या</h2>
+          </div>
+          <div class="panel-body">
+            <div id="departmentSummary" class="table-wrap"></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="entryView" class="view-section hidden">
+        <section class="panel">
+          <div class="panel-header">
+            <h2 id="formTitle">कर्मचारी माहिती नोंदणी</h2>
+            <span id="editBadge" class="badge hidden">दुरुस्ती सुरू</span>
+          </div>
+          <div class="panel-body">
+            <form id="employeeForm" class="grid"></form>
+          </div>
+        </section>
+      </section>
+
+      <section id="masterView" class="view-section hidden">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>मास्टर डेटाबेस</h2>
+            <div class="actions">
+              <button id="clearFiltersBtn" class="secondary" type="button">फिल्टर काढा</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid" style="margin-bottom: 14px;">
+              <div class="span-4">
+                <label for="filterDept">विभाग / कार्यालयानुसार शोध</label>
+                <select id="filterDept"></select>
+              </div>
+              <div class="span-4">
+                <label for="filterText">नाव, पदनाम, सेवार्थ आयडी किंवा कर्मचारी क्रमांक</label>
+                <input id="filterText" type="search" placeholder="शोध शब्द प्रविष्ट करा">
+              </div>
+              <div class="span-4">
+                <label for="filterCategory">जातीय प्रवर्ग</label>
+                <select id="filterCategory"></select>
+              </div>
+            </div>
+            <div id="masterTable" class="table-wrap"></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="profileView" class="view-section hidden">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>कर्मचारी प्रोफाइल</h2>
+            <div class="actions">
+              <button id="downloadProfileExcelBtn" type="button" disabled>या कर्मचाऱ्याचा Excel डाउनलोड</button>
+              <button id="printProfileBtn" class="secondary" type="button">प्रिंट</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid no-print" style="margin-bottom: 16px;">
+              <div class="span-8">
+                <label for="profileNumber">कर्मचारी क्रमांक प्रविष्ट करा</label>
+                <input id="profileNumber" placeholder="उदा. EMP-001">
+              </div>
+              <div class="span-4" style="align-self: end;">
+                <button id="profileSearchBtn" type="button" style="width: 100%;">प्रोफाइल पहा</button>
+              </div>
+            </div>
+            <div id="profileResult" class="profile-print"></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="exportView" class="view-section hidden">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>डाउनलोडपूर्व पूर्वावलोकन</h2>
+            <div class="actions">
+              <button id="downloadExcelBtn" type="button">Excel डाउनलोड</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="notice">डाउनलोडपूर्वी खालील पूर्वावलोकन तपासा. Excel मध्ये मूळ नमुन्याप्रमाणे “मास्टर डेटाबेस” आणि “मुद्रणासाठी नोंद” विभाग तयार होतील.</div>
+            <div id="exportPreview" class="table-wrap"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="previewModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <section class="modal">
+      <div class="panel-header">
+        <h2 id="modalTitle">Excel डाउनलोडपूर्व पूर्वावलोकन</h2>
+        <div class="actions">
+          <button id="modalDownloadBtn" type="button">Excel डाउनलोड</button>
+          <button id="modalCloseBtn" class="secondary" type="button">बंद करा</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="modalPreview" class="table-wrap"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "samaj-kalyan-employee-registry-v1";
+    const SESSION_KEY = "samaj-kalyan-session-v1";
+
+    const users = {
+      master: { username: "hod", password: "hod123", label: "प्रमुख / उच्च अधिकारी" },
+      entry: { username: "employee", password: "emp123", label: "डेटा एंट्री कर्मचारी" }
+    };
+
+    const operationalFields = [
+      { key: "employeeNumber", label: "कर्मचारी क्रमांक", type: "text", required: true, section: "कार्यालयीन नियंत्रण", export: true },
+      { key: "department", label: "विभाग / कार्यालय", type: "select", required: true, section: "कार्यालयीन नियंत्रण", options: ["समाज कल्याण विभाग", "जिल्हा समाज कल्याण अधिकारी कार्यालय", "वसतिगृह शाखा", "अनुदान शाखा", "अपंग कल्याण शाखा", "योजना शाखा", "लेखा शाखा", "आस्थापना शाखा"], export: true },
+      { key: "recordStatus", label: "नोंद स्थिती", type: "select", section: "कार्यालयीन नियंत्रण", options: ["मसुदा", "पडताळणीकरिता सादर", "मंजूर", "दुरुस्तीसाठी परत"], export: true }
+    ];
+
+    const workbookFields = [
+      { key: "employeeName", label: "कर्मचाऱ्याचे नाव", type: "text", required: true, section: "वैयक्तिक माहिती" },
+      { key: "designation", label: "पदनाम", type: "text", required: true, section: "वैयक्तिक माहिती" },
+      { key: "birthDate", label: "जन्मतारीख", type: "date", section: "वैयक्तिक माहिती" },
+      { key: "education", label: "शैक्षणिक अर्हता", type: "textarea", section: "वैयक्तिक माहिती" },
+      { key: "category", label: "जातीय प्रवर्ग", type: "select", section: "वैयक्तिक माहिती", options: ["खुला", "अनुसूचित जाती", "अनुसूचित जमाती", "विमुक्त जाती", "भटक्या जमाती", "इतर मागास वर्ग", "विशेष मागास प्रवर्ग", "आर्थिकदृष्ट्या दुर्बल घटक"] },
+      { key: "nativeAddress", label: "स्वग्रामाचा पत्ता", type: "textarea", section: "वैयक्तिक माहिती" },
+      { key: "currentAddress", label: "सध्याचा पत्ता", type: "textarea", section: "वैयक्तिक माहिती" },
+      { key: "aadhaar", label: "आधार क्रमांक", type: "text", section: "वैयक्तिक माहिती", pattern: "[0-9 ]{12,14}" },
+      { key: "pan", label: "पॅन क्रमांक", type: "text", section: "वैयक्तिक माहिती" },
+      { key: "mobile", label: "दूरध्वनी / भ्रमणध्वनी क्रमांक", type: "tel", section: "वैयक्तिक माहिती" },
+      { key: "sevarthId", label: "सेवार्थ आयडी", type: "text", section: "वैयक्तिक माहिती" },
+      { key: "appointmentDate", label: "मूळ नियुक्ती दिनांक", type: "date", section: "सेवाविषयक माहिती" },
+      { key: "appointmentMode", label: "मूळ नियुक्ती माध्यम", type: "text", section: "सेवाविषयक माहिती" },
+      { key: "medicalRecord", label: "वैद्यकीय तपासणी नोंद", type: "select", section: "सेवाविषयक माहिती", options: ["प्रलंबित", "प्राप्त", "लागू नाही"], document: true },
+      { key: "characterVerification", label: "चारित्र्य पडताळणी नोंद", type: "select", section: "सेवाविषयक माहिती", options: ["प्रलंबित", "प्राप्त", "लागू नाही"], document: true },
+      { key: "languageExamExemption", label: "हिंदी / मराठी भाषा परीक्षा सूट", type: "select", section: "सेवाविषयक माहिती", options: ["होय", "नाही", "लागू नाही"], document: true },
+      { key: "typingExam", label: "टंकलेखन परीक्षा", type: "select", section: "सेवाविषयक माहिती", options: ["उत्तीर्ण", "अनुत्तीर्ण", "सूट", "लागू नाही"], document: true },
+      { key: "computerQualification", label: "संगणक अर्हता", type: "text", section: "सेवाविषयक माहिती", document: true },
+      { key: "postEntryExamDate", label: "सेवा प्रवेशोत्तर परीक्षा उत्तीर्ण दिनांक", type: "date", section: "सेवाविषयक माहिती", document: true },
+      { key: "competitiveExam", label: "स्पर्धा परीक्षा / विभागीय परीक्षा", type: "text", section: "सेवाविषयक माहिती", document: true },
+      { key: "groupInsuranceFirstDeduction", label: "गट विमा योजना प्रथम कपात", type: "date", section: "सेवाविषयक माहिती", document: true },
+      { key: "providentNpsNumber", label: "भविष्य निर्वाह निधी / NPS क्रमांक", type: "text", section: "सेवाविषयक माहिती" },
+      { key: "permanencyBenefit", label: "स्थायित्व लाभ", type: "text", section: "सेवाविषयक माहिती", document: true },
+      { key: "nominationProvidentFund", label: "नामनिर्देशन — भविष्य निर्वाह निधी", type: "select", section: "नामनिर्देशन संबंधी माहिती", options: ["प्राप्त", "प्रलंबित", "लागू नाही"], document: true },
+      { key: "nominationGratuity", label: "नामनिर्देशन — उपदान", type: "select", section: "नामनिर्देशन संबंधी माहिती", options: ["प्राप्त", "प्रलंबित", "लागू नाही"], document: true },
+      { key: "nominationFamilyCertificate", label: "नामनिर्देशन — कुटुंब प्रमाणपत्र (नमुना ३)", type: "select", section: "नामनिर्देशन संबंधी माहिती", options: ["प्राप्त", "प्रलंबित", "लागू नाही"], document: true },
+      { key: "nominationNps", label: "NPS नामनिर्देशन", type: "select", section: "नामनिर्देशन संबंधी माहिती", options: ["प्राप्त", "प्रलंबित", "लागू नाही"], document: true },
+      { key: "retirementDate", label: "सेवानिवृत्ती दिनांक", type: "date", section: "सेवानिवृत्ती व लाभ संबंधी माहिती" },
+      { key: "modifiedAssuredProgression", label: "सुधारित आ. प्र. यो.", type: "text", section: "सेवानिवृत्ती व लाभ संबंधी माहिती", document: true },
+      { key: "firstBenefitDate", label: "पहिला लाभ मंजूर दिनांक", type: "date", section: "सेवानिवृत्ती व लाभ संबंधी माहिती", document: true },
+      { key: "secondBenefitDate", label: "दुसरा लाभ मंजूर दिनांक", type: "date", section: "सेवानिवृत्ती व लाभ संबंधी माहिती", document: true },
+      { key: "thirdBenefitDate", label: "तिसरा लाभ मंजूर दिनांक", type: "date", section: "सेवानिवृत्ती व लाभ संबंधी माहिती", document: true }
+    ];
+
+    const extraFields = [
+      { key: "npsNumber", label: "NPS No.", type: "text", section: "अतिरिक्त कार्यालयीन नोंदी", export: true },
+      { key: "voterId", label: "निवडणूक ओळखपत्र क्रमांक", type: "text", section: "अतिरिक्त कार्यालयीन नोंदी", export: true },
+      { key: "serviceRemarks", label: "सेवाविषयक नोंदी / शेरा", type: "textarea", section: "अतिरिक्त कार्यालयीन नोंदी", export: true }
+    ];
+
+    const fields = [...operationalFields, ...workbookFields, ...extraFields];
+    const exportFields = fields;
+    let records = [];
+    let session = null;
+    let currentView = "dashboard";
+    let editingId = null;
+    let currentProfileRecordId = null;
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeXml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function loadRecords() {
+      try {
+        records = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      } catch {
+        records = [];
+      }
+    }
+
+    function saveRecords() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+    }
+
+    function loadSession() {
+      try {
+        session = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+      } catch {
+        session = null;
+      }
+    }
+
+    function saveSession(nextSession) {
+      session = nextSession;
+      if (nextSession) {
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(nextSession));
+      } else {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    }
+
+    function groupBySection() {
+      return fields.reduce((acc, field) => {
+        acc[field.section] ||= [];
+        acc[field.section].push(field);
+        return acc;
+      }, {});
+    }
+
+    function makeInput(field, value = "") {
+      if (field.type === "textarea") {
+        return `<textarea id="${field.key}" name="${field.key}" ${field.required ? "required" : ""}>${escapeHtml(value)}</textarea>`;
+      }
+
+      if (field.type === "select") {
+        const options = [`<option value="">निवडा</option>`].concat((field.options || []).map((option) => {
+          const selected = option === value ? "selected" : "";
+          return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(option)}</option>`;
+        }));
+        return `<select id="${field.key}" name="${field.key}" ${field.required ? "required" : ""}>${options.join("")}</select>`;
+      }
+
+      const attrs = [
+        `id="${field.key}"`,
+        `name="${field.key}"`,
+        `type="${field.type || "text"}"`,
+        field.required ? "required" : "",
+        field.pattern ? `pattern="${field.pattern}"` : "",
+        `value="${escapeHtml(value)}"`
+      ].filter(Boolean).join(" ");
+      return `<input ${attrs}>`;
+    }
+
+    function renderForm(record = {}) {
+      const form = $("#employeeForm");
+      const grouped = groupBySection();
+      form.innerHTML = Object.entries(grouped).map(([section, sectionFields]) => `
+        <fieldset class="span-12" style="border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin: 0;">
+          <legend style="font-weight: 800; padding: 0 6px;">${escapeHtml(section)}</legend>
+          <div class="grid">
+            ${sectionFields.map((field) => {
+              const wide = field.type === "textarea" || field.key.includes("Address") || field.key === "serviceRemarks";
+              const span = wide ? "span-6" : "span-3";
+              const files = record.documents?.[field.key] || [];
+              return `
+                <div class="${span}">
+                  <label for="${field.key}">${escapeHtml(field.label)}${field.required ? " *" : ""}</label>
+                  ${makeInput(field, record[field.key] || "")}
+                  ${field.document ? `
+                    <label for="${field.key}Doc" style="margin-top: 8px;">संबंधित कागदपत्र अपलोड</label>
+                    <input id="${field.key}Doc" name="${field.key}Doc" type="file" multiple>
+                    ${files.length ? `<ul class="file-list">${files.map((file) => `<li>${escapeHtml(file.name)}</li>`).join("")}</ul>` : ""}
+                  ` : ""}
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </fieldset>
+      `).join("") + `
+        <div class="span-12 actions" style="justify-content: flex-end;">
+          <button id="resetFormBtn" class="secondary" type="button">रिकामे करा</button>
+          <button type="submit">नोंद जतन करा</button>
+        </div>
+      `;
+
+      $("#resetFormBtn").addEventListener("click", () => {
+        editingId = null;
+        $("#editBadge").classList.add("hidden");
+        $("#formTitle").textContent = "कर्मचारी माहिती नोंदणी";
+        renderForm();
+      });
+    }
+
+    function recordFromForm(form) {
+      const formData = new FormData(form);
+      const existing = records.find((item) => item.id === editingId);
+      const next = {
+        id: editingId || crypto.randomUUID(),
+        createdAt: existing?.createdAt || new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        documents: existing?.documents || {}
+      };
+
+      fields.forEach((field) => {
+        next[field.key] = String(formData.get(field.key) || "").trim();
+      });
+      return next;
+    }
+
+    async function attachFiles(record, form) {
+      for (const field of fields.filter((item) => item.document)) {
+        const input = form.elements[`${field.key}Doc`];
+        if (!input || !input.files?.length) continue;
+        const stored = [];
+        for (const file of input.files) {
+          const dataUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+          stored.push({
+            name: file.name,
+            type: file.type || "application/octet-stream",
+            size: file.size,
+            dataUrl
+          });
+        }
+        record.documents[field.key] = stored;
+      }
+    }
+
+    function upsertRecord(record) {
+      const duplicate = records.find((item) => item.employeeNumber === record.employeeNumber && item.id !== record.id);
+      if (duplicate) {
+        alert("हा कर्मचारी क्रमांक आधीच नोंदविला आहे.");
+        return false;
+      }
+
+      const index = records.findIndex((item) => item.id === record.id);
+      if (index >= 0) records[index] = record;
+      else records.push(record);
+      saveRecords();
+      return true;
+    }
+
+    function documentsCount(record) {
+      return Object.values(record.documents || {}).reduce((sum, files) => sum + (files?.length || 0), 0);
+    }
+
+    function uniqueValues(key) {
+      return [...new Set(records.map((item) => item[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b, "mr"));
+    }
+
+    function renderStats() {
+      $("#totalCount").textContent = records.length;
+      $("#deptCount").textContent = uniqueValues("department").length;
+      $("#docCount").textContent = records.reduce((sum, record) => sum + documentsCount(record), 0);
+      $("#retireCount").textContent = records.filter((record) => record.retirementDate).length;
+
+      const counts = records.reduce((acc, record) => {
+        const key = record.department || "विभाग नमूद नाही";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {});
+
+      const rows = Object.entries(counts).sort((a, b) => a[0].localeCompare(b[0], "mr"));
+      $("#departmentSummary").innerHTML = rows.length ? `
+        <table>
+          <thead><tr><th>विभाग / कार्यालय</th><th>कर्मचारी संख्या</th></tr></thead>
+          <tbody>${rows.map(([dept, count]) => `<tr><td>${escapeHtml(dept)}</td><td>${count}</td></tr>`).join("")}</tbody>
+        </table>
+      ` : `<div class="notice" style="margin: 0;">अद्याप कोणतीही नोंद उपलब्ध नाही.</div>`;
+    }
+
+    function populateFilters() {
+      const deptOptions = [`<option value="">सर्व विभाग</option>`].concat(uniqueValues("department").map((dept) => `<option value="${escapeHtml(dept)}">${escapeHtml(dept)}</option>`));
+      $("#filterDept").innerHTML = deptOptions.join("");
+
+      const categories = uniqueValues("category");
+      $("#filterCategory").innerHTML = [`<option value="">सर्व प्रवर्ग</option>`].concat(categories.map((cat) => `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`)).join("");
+    }
+
+    function filteredRecords() {
+      const dept = $("#filterDept")?.value || "";
+      const category = $("#filterCategory")?.value || "";
+      const query = ($("#filterText")?.value || "").toLowerCase().trim();
+      return records.filter((record) => {
+        const matchesDept = !dept || record.department === dept;
+        const matchesCategory = !category || record.category === category;
+        const haystack = [record.employeeNumber, record.employeeName, record.designation, record.sevarthId, record.department].join(" ").toLowerCase();
+        const matchesQuery = !query || haystack.includes(query);
+        return matchesDept && matchesCategory && matchesQuery;
+      });
+    }
+
+    function renderTable(target, data, includeActions = true) {
+      const columns = [
+        ["employeeNumber", "कर्मचारी क्रमांक"],
+        ["employeeName", "कर्मचाऱ्याचे नाव"],
+        ["designation", "पदनाम"],
+        ["department", "विभाग / कार्यालय"],
+        ["sevarthId", "सेवार्थ आयडी"],
+        ["mobile", "दूरध्वनी"],
+        ["category", "जातीय प्रवर्ग"],
+        ["recordStatus", "नोंद स्थिती"]
+      ];
+      const actionHead = includeActions ? "<th>कारवाई</th>" : "";
+      const rows = data.map((record) => `
+        <tr>
+          ${columns.map(([key]) => `<td${["employeeName", "department"].includes(key) ? ' class="wrap"' : ""}>${escapeHtml(record[key])}</td>`).join("")}
+          ${includeActions ? `<td>
+            <div class="actions">
+              <button class="secondary icon" type="button" title="प्रोफाइल" onclick="openProfile('${record.id}')">पहा</button>
+              <button class="secondary icon" type="button" title="दुरुस्ती" onclick="editRecord('${record.id}')">दुरुस्ती</button>
+              ${session?.role === "master" ? `<button class="danger icon" type="button" title="हटवा" onclick="deleteRecord('${record.id}')">हटवा</button>` : ""}
+            </div>
+          </td>` : ""}
+        </tr>
+      `).join("");
+      target.innerHTML = data.length ? `
+        <table>
+          <thead><tr>${columns.map(([, label]) => `<th>${escapeHtml(label)}</th>`).join("")}${actionHead}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      ` : `<div class="notice" style="margin: 0;">शोध निकषांनुसार नोंदी उपलब्ध नाहीत.</div>`;
+    }
+
+    function renderMaster() {
+      populateFilters();
+      renderTable($("#masterTable"), filteredRecords(), true);
+    }
+
+    function renderExportPreview(target = $("#exportPreview")) {
+      const data = filteredRecords();
+      target.innerHTML = makeExportTable(data);
+    }
+
+    function makeExportTable(data) {
+      if (!data.length) {
+        return `<div class="notice" style="margin: 0;">डाउनलोड करण्यासाठी नोंदी उपलब्ध नाहीत.</div>`;
+      }
+      const heads = exportFields.map((field) => field.label).concat(["कागदपत्रांची संख्या", "कागदपत्रांची नावे", "अंतिम अद्ययावत दिनांक"]);
+      const rows = data.map((record) => {
+        const docNames = Object.entries(record.documents || {}).flatMap(([fieldKey, files]) => {
+          const label = fields.find((field) => field.key === fieldKey)?.label || fieldKey;
+          return (files || []).map((file) => `${label}: ${file.name}`);
+        }).join("; ");
+        const values = exportFields.map((field) => record[field.key] || "").concat([documentsCount(record), docNames, formatDateTime(record.updatedAt)]);
+        return `<tr>${values.map((value) => `<td>${escapeHtml(value)}</td>`).join("")}</tr>`;
+      }).join("");
+      return `<table><thead><tr>${heads.map((head) => `<th>${escapeHtml(head)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function documentNames(record) {
+      return Object.entries(record.documents || {}).flatMap(([fieldKey, files]) => {
+        const label = fields.find((field) => field.key === fieldKey)?.label || fieldKey;
+        return (files || []).map((file) => `${label}: ${file.name}`);
+      }).join("; ");
+    }
+
+    function excelCell(value, style = "") {
+      return `<Cell${style ? ` ss:StyleID="${style}"` : ""}><Data ss:Type="String">${escapeXml(value)}</Data></Cell>`;
+    }
+
+    function excelRow(values, style = "") {
+      return `<Row>${values.map((value) => excelCell(value, style)).join("")}</Row>`;
+    }
+
+    function excelWorksheet(name, rows) {
+      return `
+        <Worksheet ss:Name="${escapeXml(name.slice(0, 31))}">
+          <Table>${rows.join("")}</Table>
+        </Worksheet>
+      `;
+    }
+
+    function masterDatabaseRows(data) {
+      const headings = [
+        ...exportFields.map((field) => field.label),
+        "कागदपत्रांची संख्या",
+        "कागदपत्रांची नावे",
+        "अंतिम अद्ययावत दिनांक"
+      ];
+      const rows = [
+        `<Row><Cell ss:MergeAcross="${headings.length - 1}" ss:StyleID="title"><Data ss:Type="String">समाज कल्याण विभाग — अधिकारी / कर्मचारी वैयक्तिक व सेवाविषयक माहिती नोंदवही</Data></Cell></Row>`,
+        excelRow(headings, "header")
+      ];
+      data.forEach((record) => {
+        const values = exportFields.map((field) => record[field.key] || "").concat([
+          documentsCount(record),
+          documentNames(record),
+          formatDateTime(record.updatedAt)
+        ]);
+        rows.push(excelRow(values));
+      });
+      rows.push(excelRow(["टीप : आधार, पॅन व इतर वैयक्तिक माहिती ही गोपनीय स्वरूपाची असून सदर नोंदवही अधिकृत वापरासाठीच ठेवावी."], "note"));
+      return rows;
+    }
+
+    function pairRow(labelA, valueA, labelB = "", valueB = "", labelC = "", valueC = "", labelD = "", valueD = "") {
+      return excelRow([labelA, valueA, labelB, valueB, labelC, valueC, labelD, valueD]);
+    }
+
+    function printRecordRows(record) {
+      return [
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="title"><Data ss:Type="String">समाज कल्याण विभाग</Data></Cell></Row>`,
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="section"><Data ss:Type="String">अधिकारी / कर्मचारी वैयक्तिक माहिती नोंदपत्र</Data></Cell></Row>`,
+        pairRow("कर्मचाऱ्याचे नाव", record.employeeName, "पदनाम", record.designation, "जन्मतारीख", record.birthDate, "जातीय प्रवर्ग", record.category),
+        pairRow("कर्मचारी क्रमांक", record.employeeNumber, "सेवार्थ आयडी", record.sevarthId, "दूरध्वनी / भ्रमणध्वनी क्रमांक", record.mobile, "NPS No.", record.npsNumber),
+        pairRow("शैक्षणिक अर्हता", record.education, "आधार क्रमांक", record.aadhaar, "पॅन क्रमांक", record.pan, "निवडणूक ओळखपत्र क्रमांक", record.voterId),
+        `<Row><Cell ss:StyleID="label"><Data ss:Type="String">विभाग / कार्यालय</Data></Cell><Cell ss:MergeAcross="6"><Data ss:Type="String">${escapeXml(record.department || "")}</Data></Cell></Row>`,
+        `<Row><Cell ss:StyleID="label"><Data ss:Type="String">स्वग्रामाचा पत्ता</Data></Cell><Cell ss:MergeAcross="6"><Data ss:Type="String">${escapeXml(record.nativeAddress || "")}</Data></Cell></Row>`,
+        `<Row><Cell ss:StyleID="label"><Data ss:Type="String">सध्याचा पत्ता</Data></Cell><Cell ss:MergeAcross="6"><Data ss:Type="String">${escapeXml(record.currentAddress || "")}</Data></Cell></Row>`,
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="note"><Data ss:Type="String">टीप : सदर नोंदपत्र अधिकृत कार्यालयीन वापरासाठी असून वैयक्तिक माहिती गोपनीय ठेवावी.</Data></Cell></Row>`,
+        `<Row></Row>`,
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="title"><Data ss:Type="String">समाज कल्याण विभाग</Data></Cell></Row>`,
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="section"><Data ss:Type="String">अधिकारी / कर्मचारी सेवाविषयक माहिती नोंदपत्र</Data></Cell></Row>`,
+        pairRow("मूळ नियुक्ती दिनांक", record.appointmentDate, "मूळ नियुक्ती माध्यम", record.appointmentMode, "वैद्यकीय तपासणी नोंद", record.medicalRecord, "चारित्र्य पडताळणी नोंद", record.characterVerification),
+        pairRow("हिंदी / मराठी भाषा परीक्षा सूट", record.languageExamExemption, "टंकलेखन परीक्षा", record.typingExam, "संगणक अर्हता", record.computerQualification, "सेवा प्रवेशोत्तर परीक्षा उत्तीर्ण दिनांक", record.postEntryExamDate),
+        pairRow("स्पर्धा परीक्षा / विभागीय परीक्षा", record.competitiveExam, "गट विमा योजना प्रथम कपात", record.groupInsuranceFirstDeduction, "भविष्य निर्वाह निधी / NPS क्रमांक", record.providentNpsNumber, "NPS क्रमांक", record.npsNumber),
+        pairRow("स्थायित्व लाभ", record.permanencyBenefit, "सेवानिवृत्ती दिनांक", record.retirementDate, "सुधारित आ. प्र. यो.", record.modifiedAssuredProgression, "नोंद स्थिती", record.recordStatus),
+        pairRow("पहिला लाभ मंजूर दिनांक", record.firstBenefitDate, "दुसरा लाभ मंजूर दिनांक", record.secondBenefitDate, "तिसरा लाभ मंजूर दिनांक", record.thirdBenefitDate, "", ""),
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="section"><Data ss:Type="String">नामनिर्देशन संबंधी माहिती</Data></Cell></Row>`,
+        pairRow("नामनिर्देशन — भविष्य निर्वाह निधी", record.nominationProvidentFund, "नामनिर्देशन — उपदान", record.nominationGratuity, "नामनिर्देशन — कुटुंब प्रमाणपत्र (नमुना ३)", record.nominationFamilyCertificate, "NPS नामनिर्देशन", record.nominationNps),
+        `<Row><Cell ss:StyleID="label"><Data ss:Type="String">सेवाविषयक नोंदी / शेरा</Data></Cell><Cell ss:MergeAcross="6"><Data ss:Type="String">${escapeXml(record.serviceRemarks || "")}</Data></Cell></Row>`,
+        `<Row><Cell ss:StyleID="label"><Data ss:Type="String">कागदपत्रांची नावे</Data></Cell><Cell ss:MergeAcross="6"><Data ss:Type="String">${escapeXml(documentNames(record))}</Data></Cell></Row>`,
+        pairRow("नोंद करणाऱ्या अधिकाऱ्याची स्वाक्षरी", "", "", "", "कार्यालय प्रमुखाची स्वाक्षरी", "", "", ""),
+        `<Row><Cell ss:MergeAcross="7" ss:StyleID="note"><Data ss:Type="String">टीप : सर्व दिनांक अधिकृत अभिलेखानुसार नमूद करावेत.</Data></Cell></Row>`,
+        `<Row></Row>`,
+        `<Row></Row>`
+      ];
+    }
+
+    function printFormatRows(data) {
+      return data.flatMap((record) => printRecordRows(record));
+    }
+
+    function buildExcelWorkbook(data) {
+      const generatedAt = new Intl.DateTimeFormat("mr-IN", { dateStyle: "medium", timeStyle: "short" }).format(new Date());
+      return `<?xml version="1.0" encoding="UTF-8"?>
+        <?mso-application progid="Excel.Sheet"?>
+        <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+          <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+            <Title>समाज कल्याण विभाग कर्मचारी नोंदवही</Title>
+            <Created>${new Date().toISOString()}</Created>
+          </DocumentProperties>
+          <Styles>
+            <Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Top" ss:WrapText="1"/><Font ss:FontName="Mangal" ss:Size="11"/></Style>
+            <Style ss:ID="title"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Mangal" ss:Size="14" ss:Bold="1"/><Interior ss:Color="#DCE8E2" ss:Pattern="Solid"/></Style>
+            <Style ss:ID="section"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Mangal" ss:Size="12" ss:Bold="1"/><Interior ss:Color="#EEF3F0" ss:Pattern="Solid"/></Style>
+            <Style ss:ID="header"><Alignment ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Mangal" ss:Size="11" ss:Bold="1"/><Interior ss:Color="#EEF3F0" ss:Pattern="Solid"/></Style>
+            <Style ss:ID="label"><Font ss:FontName="Mangal" ss:Size="11" ss:Bold="1"/><Interior ss:Color="#F5F7F4" ss:Pattern="Solid"/></Style>
+            <Style ss:ID="note"><Alignment ss:WrapText="1"/><Font ss:FontName="Mangal" ss:Size="10" ss:Italic="1"/></Style>
+          </Styles>
+          ${excelWorksheet("मास्टर डेटाबेस", masterDatabaseRows(data))}
+          ${excelWorksheet("मुद्रणासाठी नोंद", [
+            `<Row><Cell ss:MergeAcross="7" ss:StyleID="note"><Data ss:Type="String">अहवाल तयार दिनांक : ${escapeXml(generatedAt)}</Data></Cell></Row>`,
+            `<Row></Row>`,
+            ...printFormatRows(data)
+          ])}
+        </Workbook>`;
+    }
+
+    function formatDateTime(value) {
+      if (!value) return "";
+      return new Intl.DateTimeFormat("mr-IN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+    }
+
+    function renderProfile(record) {
+      if (!record) {
+        currentProfileRecordId = null;
+        $("#downloadProfileExcelBtn").disabled = true;
+        $("#profileResult").innerHTML = `<div class="notice">दिलेल्या कर्मचारी क्रमांकानुसार नोंद उपलब्ध नाही.</div>`;
+        return;
+      }
+      currentProfileRecordId = record.id;
+      $("#downloadProfileExcelBtn").disabled = false;
+      const grouped = groupBySection();
+      $("#profileResult").innerHTML = `
+        <section class="panel print-target" style="box-shadow: none;">
+          <div class="panel-header">
+            <h2>समाज कल्याण विभाग - अधिकारी / कर्मचारी नोंदपत्र</h2>
+            <span class="badge">${escapeHtml(record.recordStatus || "स्थिती नमूद नाही")}</span>
+          </div>
+          <div class="panel-body profile-print">
+            ${Object.entries(grouped).map(([section, sectionFields]) => `
+              <section class="profile-section">
+                <h3>${escapeHtml(section)}</h3>
+                <dl>
+                  ${sectionFields.map((field) => `
+                    <div>
+                      <dt>${escapeHtml(field.label)}</dt>
+                      <dd>${escapeHtml(record[field.key] || "-")}</dd>
+                      ${(record.documents?.[field.key] || []).length ? `<dd>${record.documents[field.key].map((file) => `<span class="badge">${escapeHtml(file.name)}</span>`).join(" ")}</dd>` : ""}
+                    </div>
+                  `).join("")}
+                </dl>
+              </section>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function setView(view) {
+      currentView = view;
+      $$(".view-section").forEach((section) => section.classList.add("hidden"));
+      $(`#${view}View`).classList.remove("hidden");
+      $$(".nav button").forEach((button) => button.setAttribute("aria-current", button.dataset.view === view ? "page" : "false"));
+
+      const titles = {
+        dashboard: ["डॅशबोर्ड", "कर्मचारी नोंदींचा विभागनिहाय व दस्तऐवजनिहाय आढावा."],
+        entry: ["नोंदणी / दुरुस्ती", "Excel नमुन्यातील सर्व आवश्यक माहिती डिजिटल स्वरूपात नोंदवा."],
+        master: ["मास्टर डेटाबेस", "विभाग, प्रवर्ग आणि कर्मचारी तपशीलांनुसार नोंदी शोधा."],
+        profile: ["कर्मचारी प्रोफाइल", "कर्मचारी क्रमांकाद्वारे वैयक्तिक व सेवाविषयक नोंदपत्र पहा."],
+        export: ["पूर्वावलोकन व Excel", "डाउनलोडपूर्वी नोंदी तपासा आणि Excel-सुसंगत फाइल तयार करा."]
+      };
+      $("#viewTitle").textContent = titles[view][0];
+      $("#viewSubtitle").textContent = titles[view][1];
+
+      if (view === "dashboard") renderStats();
+      if (view === "master") renderMaster();
+      if (view === "export") renderExportPreview();
+    }
+
+    function updateRoleAccess() {
+      const isMaster = session?.role === "master";
+      document.querySelector('[data-view="export"]').classList.toggle("hidden", !isMaster);
+      $("#previewBtn").classList.toggle("hidden", !isMaster);
+      $("#downloadExcelBtn").classList.toggle("hidden", !isMaster);
+      $("#modalDownloadBtn").classList.toggle("hidden", !isMaster);
+      $("#sessionLabel").textContent = `${users[session.role].label} प्रवेश`;
+      if (!isMaster && currentView === "export") setView("dashboard");
+    }
+
+    function enterApp() {
+      $("#loginView").classList.add("hidden");
+      $("#appView").classList.remove("hidden");
+      updateRoleAccess();
+      renderForm();
+      setView(currentView);
+    }
+
+    function leaveApp() {
+      saveSession(null);
+      $("#appView").classList.add("hidden");
+      $("#loginView").classList.remove("hidden");
+      $("#loginForm").reset();
+    }
+
+    window.editRecord = function(id) {
+      const record = records.find((item) => item.id === id);
+      if (!record) return;
+      editingId = id;
+      $("#editBadge").classList.remove("hidden");
+      $("#formTitle").textContent = "कर्मचारी माहिती दुरुस्ती";
+      renderForm(record);
+      setView("entry");
+    };
+
+    window.deleteRecord = function(id) {
+      if (session?.role !== "master") return;
+      if (!confirm("ही नोंद कायमची हटवायची आहे का?")) return;
+      records = records.filter((item) => item.id !== id);
+      saveRecords();
+      renderMaster();
+      renderStats();
+    };
+
+    window.openProfile = function(id) {
+      const record = records.find((item) => item.id === id);
+      if (!record) return;
+      $("#profileNumber").value = record.employeeNumber;
+      renderProfile(record);
+      setView("profile");
+    };
+
+    function saveExcelWorkbook(data, filenamePrefix) {
+      if (!data.length) {
+        alert("डाउनलोड करण्यासाठी नोंदी उपलब्ध नाहीत.");
+        return;
+      }
+      const workbook = buildExcelWorkbook(data);
+      const blob = new Blob([workbook], { type: "application/vnd.ms-excel;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const stamp = new Date().toISOString().slice(0, 10);
+      link.href = url;
+      link.download = `${filenamePrefix}-${stamp}.xls`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadExcel() {
+      saveExcelWorkbook(filteredRecords(), "samaj-kalyan-sampurna-ahwal");
+    }
+
+    function downloadProfileExcel() {
+      const record = records.find((item) => item.id === currentProfileRecordId);
+      if (!record) {
+        alert("कृपया प्रथम कर्मचारी प्रोफाइल निवडा.");
+        return;
+      }
+      const safeNumber = (record.employeeNumber || "single-employee").replace(/[^a-zA-Z0-9_-]/g, "-");
+      saveExcelWorkbook([record], `samaj-kalyan-karmachari-${safeNumber}`);
+    }
+
+    $("#loginForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const role = $("#loginRole").value;
+      const user = users[role];
+      const ok = $("#loginUser").value.trim() === user.username && $("#loginPass").value === user.password;
+      if (!ok) {
+        $("#loginError").textContent = "वापरकर्ता नाव किंवा संकेतशब्द चुकीचा आहे.";
+        $("#loginError").classList.remove("hidden");
+        return;
+      }
+      $("#loginError").classList.add("hidden");
+      saveSession({ role, loggedAt: new Date().toISOString() });
+      enterApp();
+    });
+
+    $("#logoutBtn").addEventListener("click", leaveApp);
+
+    $$(".nav button").forEach((button) => {
+      button.addEventListener("click", () => setView(button.dataset.view));
+    });
+
+    $("#newRecordBtn").addEventListener("click", () => {
+      editingId = null;
+      $("#editBadge").classList.add("hidden");
+      $("#formTitle").textContent = "कर्मचारी माहिती नोंदणी";
+      renderForm();
+      setView("entry");
+    });
+
+    $("#employeeForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const record = recordFromForm(event.currentTarget);
+      await attachFiles(record, event.currentTarget);
+      if (!upsertRecord(record)) return;
+      editingId = null;
+      $("#editBadge").classList.add("hidden");
+      renderForm();
+      renderStats();
+      alert("नोंद यशस्वीरित्या जतन झाली.");
+      setView("master");
+    });
+
+    ["filterDept", "filterText", "filterCategory"].forEach((id) => {
+      document.addEventListener("input", (event) => {
+        if (event.target.id === id) {
+          renderTable($("#masterTable"), filteredRecords(), true);
+          renderExportPreview();
+        }
+      });
+      document.addEventListener("change", (event) => {
+        if (event.target.id === id) {
+          renderTable($("#masterTable"), filteredRecords(), true);
+          renderExportPreview();
+        }
+      });
+    });
+
+    $("#clearFiltersBtn").addEventListener("click", () => {
+      $("#filterDept").value = "";
+      $("#filterText").value = "";
+      $("#filterCategory").value = "";
+      renderTable($("#masterTable"), filteredRecords(), true);
+    });
+
+    $("#profileSearchBtn").addEventListener("click", () => {
+      const number = $("#profileNumber").value.trim();
+      const record = records.find((item) => item.employeeNumber === number);
+      renderProfile(record);
+    });
+
+    $("#profileNumber").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        $("#profileSearchBtn").click();
+      }
+    });
+
+    $("#printProfileBtn").addEventListener("click", () => window.print());
+    $("#downloadProfileExcelBtn").addEventListener("click", downloadProfileExcel);
+    $("#downloadExcelBtn").addEventListener("click", downloadExcel);
+    $("#modalDownloadBtn").addEventListener("click", downloadExcel);
+
+    function openPreviewModal() {
+      renderExportPreview($("#modalPreview"));
+      $("#previewModal").classList.remove("hidden");
+      $("#modalCloseBtn").focus();
+    }
+
+    $("#previewBtn").addEventListener("click", openPreviewModal);
+    $("#modalCloseBtn").addEventListener("click", () => $("#previewModal").classList.add("hidden"));
+    $("#previewModal").addEventListener("click", (event) => {
+      if (event.target.id === "previewModal") $("#previewModal").classList.add("hidden");
+    });
+
+    loadRecords();
+    loadSession();
+    if (session) enterApp();
+  </script>
+</body>
+</html>
